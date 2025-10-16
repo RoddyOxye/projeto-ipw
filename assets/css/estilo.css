@@ -106,6 +106,13 @@ footer {
       text-decoration: none;
     }
 
+    .logo {
+      margin: 0;
+      font-size: 35px;
+      color: #f5c518
+      
+    }
+
     .banner {
       position: relative;
       height: 60vh;

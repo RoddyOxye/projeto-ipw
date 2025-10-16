@@ -9,9 +9,8 @@
 </head>
 <body>
   <header>
-    <h1>🎬 MovieVerse</h1>
+    <a class="logo" href="index.html">🎬 MovieVerse</a>
     <nav>
-      <a href="index.html">Início</a>
       <a href="login.html" id="login-link">Login</a>
       <a href="#" id="logout-link" style="display:none;">Logout</a>
     </nav>
@@ -59,7 +58,7 @@
     const bannerTitle = document.getElementById("banner-title");
     const bannerDesc = document.getElementById("banner-desc");
     const bannerBtn = document.getElementById("banner-btn");
-      
+
     async function fetchMedia(term) {
       const res = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${term}`);
       const data = await res.json();
