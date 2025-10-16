@@ -19,9 +19,9 @@
 
   <section id="banner" class="banner">
     <div class="banner-content">
-      <h2 id="banner-title">Carregando...</h2>
+      <h2 id="banner-title">Loading...</h2>
       <p id="banner-desc"></p>
-      <button id="banner-btn">Ver Detalhes</button>
+      <button id="banner-btn">Detalhes</button>
     </div>
   </section>
 
@@ -51,14 +51,15 @@
   </footer>
 
   <script>
-    const API_KEY = "96228938"; // ⚠️ coloca aqui a tua chave da OMDb
+    //chamar API
+    const API_KEY = "96228938";
     const filmesSec = document.getElementById("filmes");
     const seriesSec = document.getElementById("series");
     const banner = document.getElementById("banner");
     const bannerTitle = document.getElementById("banner-title");
     const bannerDesc = document.getElementById("banner-desc");
     const bannerBtn = document.getElementById("banner-btn");
-
+      
     async function fetchMedia(term) {
       const res = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${term}`);
       const data = await res.json();
