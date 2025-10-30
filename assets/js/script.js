@@ -1,5 +1,4 @@
- //chamar API
-    const API_KEY = "96228938";
+ const API_KEY = "96228938";
     
     const filmesSec = document.getElementById("filmes");
     const seriesSec = document.getElementById("series");
@@ -16,7 +15,7 @@
 
     async function loadHomepage() {
       const filmes = await Promise.all([
-        fetchMedia("Avengers"), fetchMedia("Inception"), fetchMedia("Interstellar")
+        fetchMedia("Fight Club"), fetchMedia("Inception"), fetchMedia("Interstellar")
       ]);
 
       const series = await Promise.all([
@@ -60,20 +59,15 @@
     const searchSection = document.getElementById("search-results");
     const resultados = document.getElementById("resultados");
 
-    searchInput.addEventListener("keyup", async e => {
-      const term = e.target.value.trim();
-      if (term.length < 3) {
-        searchSection.style.display = "none";
-        return;
-      }
-      const res = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${term}`);
-      const data = await res.json();
-      if (data.Response === "True") {
-        searchSection.style.display = "block";
-        renderMedia(data.Search, resultados);
-      } else {
-        resultados.innerHTML = "<p>Nenhum resultado encontrado.</p>";
-      }
-    });
+   searchInput.addEventListener("keypress", e => {
+    if (e.key === "Enter") {
+    const term = e.target.value.trim();
+    if (term.length >= 2) {
+      // Redireciona para a página de resultados
+      window.location.href = `pesquisar.html?q=${encodeURIComponent(term)}`;
+    }
+    }
+  });
+
 
     loadHomepage();
