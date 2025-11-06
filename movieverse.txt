@@ -1,12 +1,8 @@
 -login/singup
 -profile
--barra de pesquipa
+-barra de pesquipa V
 -categorias
 -pag filmes pag series
 -my list
 -sobre nos
 -pag ind
-
-
-
--api (outra)
