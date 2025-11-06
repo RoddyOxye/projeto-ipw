@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultados da Pesquisa - MovieVerse</title>
+  <link rel="stylesheet" href="assets/css/estilo.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a class="logo" href="index.html" style="text-decoration: none">🎬 MovieVerse</a>
+    <nav>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <!-- BARRA DE PESQUISA -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Pesquisar filmes ou séries...">
+  </div>
+
+  <main>
+    <section>
+      <h2>Resultados da Pesquisa</h2>
+      <div id="resultados" class="media-row"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 MovieVerse. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    const API_KEY = "96228938";
+    const params = new URLSearchParams(window.location.search);
+    const term = params.get("q");
+    const resultados = document.getElementById("resultados");
+
+    async function buscar() {
+    const res = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${term}`);
+    const data = await res.json();
+    if (data.Response === "True") {
+        resultados.innerHTML = "";
+        data.Search.forEach(item => {
+        const div = document.createElement("div");
+        div.classList.add("media-card");
+        div.innerHTML = `
+        <img src="${item.Poster !== "N/A" ? item.Poster : "assets/img/noimage.jpg"}">
+        <p>${item.Title}</p>`;
+        div.onclick = () => window.location.href = `detalhes.html?id=${item.imdbID}`;
+        resultados.appendChild(div);
+    });
+    } else {
+        resultados.innerHTML = "<p>Nenhum resultado encontrado.</p>";
+    }
+    }
+    buscar();
+
+    searchInput.addEventListener("keypress", e => {
+    if (e.key === "Enter") {
+    const term = e.target.value.trim();
+    if (term.length >= 2) {
+      // Redireciona para a página de resultados
+      window.location.href = `pesquisar.html?q=${encodeURIComponent(term)}`;
+    }
+    }
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MovieVerse - Reviews de Filmes e Séries</title>
+  <link rel="stylesheet" href="assets/css/estilo.css">
+
+</head>
+<body>
+  <!--  nav bar-->
+  <header>
+    <a class="logo" href="index.html" style="text-decoration: none">🎬 MovieVerse</a>
+    <nav>
+      <a href="login.html" id="login-link">Login</a>
+      <a href="#" id="logout-link" style="display:none;">Logout</a>
+    </nav>
+  </header>
+<!--banner-->
+  <section id="banner" class="banner">
+    <div class="banner-content">
+      <h2 id="banner-title">Loading...</h2>
+      <p id="banner-desc"></p>
+      <button id="banner-btn">Detalhes</button>
+    </div>
+  </section>
+<!-- barra de pesquisa-->
+  <section class="search-bar">
+    <input type="text" id="search-input" placeholder="🔍 Procurar filmes ou séries...">
+  </section>
+<!--secção dos fimes populares-->
+  <div class="sections">
+    <section>
+      <h2>🎥 Filmes Populares</h2>
+      <div id="filmes" class="media-row"></div>
+    </section>
+<!--secção dos séries populares-->
+    <section>
+      <h2>📺 Séries Populares</h2>
+      <div id="series" class="media-row"></div>
+    </section>
+  </div>
+
+  <footer style="text-align:center;padding:1rem;background:#111;">
+    <p>&copy; 2025 MovieVerse - Projeto TP-SI</p>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
