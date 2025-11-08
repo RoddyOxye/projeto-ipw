@@ -1,8 +1,0 @@
--login/singup
--profile
--barra de pesquipa V
--categorias
--pag filmes pag series
--my list
--sobre nos
--pag ind
