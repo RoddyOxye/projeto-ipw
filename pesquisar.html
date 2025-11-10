@@ -12,7 +12,15 @@
   <header>
     <a class="logo" href="index.html" style="text-decoration: none">🎬 MovieVerse</a>
     <nav>
-      <a href="login.html">Login</a>
+      <div class="user-menu">
+        <a href="login.html" id="login-link">Login</a>
+        <div id="user-dropdown" class="dropdown hidden">
+          <button id="perfil-btn">Perfil</button>
+          <button id="mylist-btn">Minha Lista</button>
+          <button id="sobre-btn">Sobre Nós</button>
+          <button id="logout-btn">Terminar Sessão</button>
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -32,6 +40,8 @@
     <p>© 2025 MovieVerse. Todos os direitos reservados.</p>
   </footer>
 
+  <!-- SCRIPTS -->
+  <script src="assets/js/loginHeader.js"></script>
   <script>
     const API_KEY = "96228938";
     const params = new URLSearchParams(window.location.search);

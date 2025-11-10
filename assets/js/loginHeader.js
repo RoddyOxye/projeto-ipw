@@ -3,6 +3,7 @@ function atualizarLogin() {
   const loginLink = document.getElementById("login-link");
   const dropdown = document.getElementById("user-dropdown");
   const perfilBtn = document.getElementById("perfil-btn");
+  const sobreBtn = document.getElementById("sobre-btn");
   const mylistBtn = document.getElementById("mylist-btn");
   const logoutBtn = document.getElementById("logout-btn");
 
@@ -25,7 +26,8 @@ function atualizarLogin() {
 
     // Botões do dropdown
     perfilBtn.onclick = () => window.location.href = "perfil.html";
-    mylistBtn.onclick = () => window.location.href = "mylist.html";
+    mylistBtn.onclick = () => window.location.href = "minhaLista.html";
+    sobreBtn.onclick = () => window.location.href = "sobre.html";
     logoutBtn.onclick = () => {
       if (confirm("Deseja terminar a sessão?")) {
         localStorage.removeItem("loggedIn");
