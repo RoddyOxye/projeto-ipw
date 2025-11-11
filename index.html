@@ -5,18 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MovieVerse - Reviews de Filmes e Séries</title>
   <link rel="stylesheet" href="assets/css/estilo.css">
-
 </head>
 <body>
-  <!--  nav bar-->
+  <!-- Nav bar -->
   <header>
-    <a class="logo" href="index.html" style="text-decoration: none">🎬 MovieVerse</a>
-    <nav>
+  <a class="logo" href="index.html" style="text-decoration: none">🎬 MovieVerse</a>
+  <nav>
+    <div class="user-menu">
       <a href="login.html" id="login-link">Login</a>
-      <a href="#" id="logout-link" style="display:none;">Logout</a>
-    </nav>
-  </header>
-<!--banner-->
+      <div id="user-dropdown" class="dropdown hidden">
+        <button id="perfil-btn">Perfil</button>
+        <button id="mylist-btn">Minha Lista</button>
+        <button id="sobre-btn">Sobre Nós</button>
+        <button id="logout-btn">Terminar Sessão</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+  <!-- Banner -->
   <section id="banner" class="banner">
     <div class="banner-content">
       <h2 id="banner-title">Loading...</h2>
@@ -24,27 +31,39 @@
       <button id="banner-btn">Detalhes</button>
     </div>
   </section>
-<!-- barra de pesquisa-->
+
+  <!-- Barra de pesquisa -->
   <section class="search-bar">
     <input type="text" id="search-input" placeholder="🔍 Procurar filmes ou séries...">
   </section>
-<!--secção dos fimes populares-->
+
+  <!-- Secções de filmes e séries populares -->
   <div class="sections">
     <section>
       <h2>🎥 Filmes Populares</h2>
       <div id="filmes" class="media-row"></div>
     </section>
-<!--secção dos séries populares-->
+
     <section>
       <h2>📺 Séries Populares</h2>
       <div id="series" class="media-row"></div>
     </section>
   </div>
 
+  <!-- Footer -->
   <footer style="text-align:center;padding:1rem;background:#111;">
     <p>&copy; 2025 MovieVerse - Projeto TP-SI</p>
   </footer>
 
-  <script src="assets/js/script.js"></script>
+  <!-- Scripts -->
+<script src="assets/js/loginHeader.js"></script>
+<script src="assets/js/script.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    atualizarLogin();
+  });
+</script>
+
+
 </body>
 </html>
