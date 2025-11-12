@@ -3,22 +3,121 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detalhes | CineReviews</title>
+  <title>Detalhes | MovieVerse</title>
   <link rel="stylesheet" href="assets/css/estilo.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #1e1e1e;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 2px solid #333;
+    }
+
+    header a.logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ffcc00;
+    }
+
+    nav a {
+      color: #f5f5f5;
+      margin-left: 1rem;
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    .detalhes {
+      display: flex;
+      gap: 1.5rem;
+      background-color: #1e1e1e;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    .detalhes img {
+      width: 250px;
+      border-radius: 10px;
+    }
+
+    .info h2 {
+      margin-top: 0;
+      color: #ffcc00;
+    }
+
+    .trailer-section,
+    .review-section,
+    .reviews-list {
+      margin-top: 2rem;
+      background-color: #1e1e1e;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 315px;
+      border-radius: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      border-radius: 8px;
+      border: none;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      resize: vertical;
+    }
+
+    button {
+      background-color: #ffcc00;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #ffdb4d;
+    }
+
+    #rating-stars {
+      font-size: 1.8rem;
+      color: #ffcc00;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      background-color: #1e1e1e;
+      border-top: 2px solid #333;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <a class="logo" href="index.html" style="text-decoration: none">🎬 MovieVerse</a>
+    <a class="logo" href="index.html">🎬 MovieVerse</a>
     <nav>
-      <div class="user-menu">
-        <a href="login.html" id="login-link">Login</a>
-        <div id="user-dropdown" class="dropdown hidden">
-          <button id="perfil-btn">Perfil</button>
-          <button id="mylist-btn">Minha Lista</button>
-          <button id="sobre-btn">Sobre Nós</button>
-          <button id="logout-btn">Terminar Sessão</button>
-        </div>
-      </div>
+      <a href="login.html">Login</a>
     </nav>
   </header>
 
@@ -38,14 +137,12 @@
 
     <div class="trailer-section">
       <h3>Trailer</h3>
-      <iframe id="trailer" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+      <iframe id="trailer" frameborder="0" allowfullscreen></iframe>
     </div>
 
     <div class="review-section">
       <h3>Faz a tua Review</h3>
-      <div id="rating-stars">
-        ★★★★★
-      </div>
+      <div id="rating-stars">★★★★★</div>
       <textarea id="comentario" placeholder="Escreve o teu comentário..."></textarea>
       <button id="guardar-review">Guardar Review</button>
     </div>
@@ -57,18 +154,54 @@
   </main>
 
   <footer>
-    <p><p>2025 MovieVerse - Projeto TP-SI</p></p>
+    <p>2025 MovieVerse - Projeto TP-SI</p>
   </footer>
 
-<!-- antes do script detalhes.js -->
-<script src="assets/js/loginHeader.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    atualizarLogin(); // Atualiza o header com o nome do utilizador e dropdown
-  });
-</script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Dados fictícios de exemplo
+      const filme = {
+        titulo: "Inception",
+        ano: 2010,
+        genero: "Ação, Ficção Científica, Thriller",
+        duracao: "2h 28min",
+        realizador: "Christopher Nolan",
+        atores: "Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page",
+        descricao: "Um ladrão que invade os sonhos das pessoas para roubar segredos corporativos deve realizar a tarefa impossível de plantar uma ideia na mente de alguém.",
+        poster: "https://m.media-amazon.com/images/I/51s+5y1DLzL._AC_SY679_.jpg",
+        trailer: "https://www.youtube.com/embed/YoHD9XEInc0"
+      };
 
-<script src="js/detalhes.js"></script>
+      // Preencher os elementos com dados
+      document.getElementById("titulo").textContent = filme.titulo;
+      document.getElementById("ano").textContent = filme.ano;
+      document.getElementById("genero").textContent = filme.genero;
+      document.getElementById("duracao").textContent = filme.duracao;
+      document.getElementById("realizador").textContent = filme.realizador;
+      document.getElementById("atores").textContent = filme.atores;
+      document.getElementById("descricao").textContent = filme.descricao;
+      document.getElementById("poster").src = filme.poster;
+      document.getElementById("trailer").src = filme.trailer;
 
+      // Simular guardar review
+      document.getElementById("guardar-review").addEventListener("click", () => {
+        const comentario = document.getElementById("comentario").value;
+        if (comentario.trim() === "") {
+          alert("Por favor escreve um comentário antes de guardar!");
+          return;
+        }
+
+        const reviewDiv = document.createElement("div");
+        reviewDiv.textContent = "⭐ " + comentario;
+        reviewDiv.style.backgroundColor = "#2a2a2a";
+        reviewDiv.style.padding = "0.5rem";
+        reviewDiv.style.borderRadius = "8px";
+        reviewDiv.style.marginTop = "0.5rem";
+
+        document.getElementById("reviews-container").appendChild(reviewDiv);
+        document.getElementById("comentario").value = "";
+      });
+    });
+  </script>
 </body>
 </html>
