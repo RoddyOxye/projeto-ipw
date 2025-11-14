@@ -3,12 +3,215 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detalhes | CineReviews</title>
+  <title>Detalhes | MovieVerse</title>
   <link rel="stylesheet" href="assets/css/estilo.css">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 2px solid #333;
+  }
+
+  header a.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffcc00;
+    text-decoration: none;
+  }
+
+  nav a {
+    color: #f5f5f5;
+    margin-left: 1rem;
+    text-decoration: none;
+  }
+
+  .user-menu {
+    position: relative;
+  }
+
+  .dropdown {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    width: 160px;
+  }
+
+  .dropdown.hidden {
+    display: none;
+  }
+
+  .dropdown button {
+    background: none;
+    border: none;
+    color: #f5f5f5;
+    text-align: left;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+
+  .dropdown button:hover {
+    background-color: #333;
+  }
+
+  main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 1rem;
+  }
+
+  /* 🔧 Layout do bloco de detalhes */
+  .detalhes {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem;
+    background-color: #1e1e1e;
+    padding: 1.5rem;
+    border-radius: 10px;
+  }
+
+  .detalhes img {
+    width: 300px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+
+  .info {
+    flex: 1;
+  }
+
+  .info h2 {
+    margin-top: 0;
+    color: #ffcc00;
+  }
+
+  .info p {
+    margin: 0.4rem 0;
+    line-height: 1.4;
+  }
+
+  #descricao {
+    margin-top: 1rem;
+  }
+
+  .trailer-section,
+  .review-section,
+  .reviews-list {
+    margin-top: 2rem;
+    background-color: #1e1e1e;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  iframe {
+    width: 100%;
+    height: 400px;
+    border-radius: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 100px;
+    border-radius: 8px;
+    border: none;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    resize: vertical;
+  }
+
+  button {
+    background-color: #ffcc00;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    font-weight: bold;
+  }
+
+  button:hover {
+    background-color: #ffdb4d;
+  }
+
+  /* Estilo das estrelas */
+  #rating-stars {
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  .star {
+    color: #555;
+    transition: color 0.2s;
+  }
+
+  .star.active {
+    color: #ffcc00;
+  }
+
+  /* Reviews */
+  .review-item {
+    background-color: #2a2a2a;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 0.7rem;
+  }
+
+  .review-stars {
+    color: #ffcc00;
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+    letter-spacing: 2px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    background-color: #1e1e1e;
+    border-top: 2px solid #333;
+  }
+
+  /* 📱 Responsivo */
+  @media (max-width: 768px) {
+    .detalhes {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .detalhes img {
+      width: 80%;
+    }
+
+    .info {
+      text-align: center;
+    }
+  }
+</style>
+
 </head>
 <body>
+  <!-- Header com login dinâmico -->
   <header>
-    <a class="logo" href="index.html" style="text-decoration: none">🎬 MovieVerse</a>
+    <a class="logo" href="index.html">🎬 MovieVerse</a>
     <nav>
       <div class="user-menu">
         <a href="login.html" id="login-link">Login</a>
@@ -24,7 +227,7 @@
 
   <main id="detalhes-container">
     <div class="detalhes">
-      <img id="poster" src="" alt="Poster">
+      <img id="poster" alt="Poster">
       <div class="info">
         <h2 id="titulo"></h2>
         <p><strong>Ano:</strong> <span id="ano"></span></p>
@@ -38,13 +241,17 @@
 
     <div class="trailer-section">
       <h3>Trailer</h3>
-      <iframe id="trailer" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+      <iframe id="trailer" frameborder="0" allowfullscreen></iframe>
     </div>
 
     <div class="review-section">
       <h3>Faz a tua Review</h3>
       <div id="rating-stars">
-        ★★★★★
+        <span class="star" data-value="1">★</span>
+        <span class="star" data-value="2">★</span>
+        <span class="star" data-value="3">★</span>
+        <span class="star" data-value="4">★</span>
+        <span class="star" data-value="5">★</span>
       </div>
       <textarea id="comentario" placeholder="Escreve o teu comentário..."></textarea>
       <button id="guardar-review">Guardar Review</button>
@@ -57,18 +264,91 @@
   </main>
 
   <footer>
-    <p><p>2025 MovieVerse - Projeto TP-SI</p></p>
+    <p>2025 MovieVerse - Projeto TP-SI</p>
   </footer>
 
-<!-- antes do script detalhes.js -->
-<script src="assets/js/loginHeader.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    atualizarLogin(); // Atualiza o header com o nome do utilizador e dropdown
-  });
-</script>
+  <!-- Scripts -->
+  <script src="assets/js/loginHeader.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof atualizarLogin === "function") atualizarLogin();
 
-<script src="js/detalhes.js"></script>
+      // Dados fictícios do filme
+      const filme = {
+        titulo: "Inception",
+        ano: 2010,
+        genero: "Ação, Ficção Científica, Thriller",
+        duracao: "2h 28min",
+        realizador: "Christopher Nolan",
+        atores: "Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page",
+        descricao:
+          "Um ladrão que invade os sonhos das pessoas para roubar segredos corporativos deve realizar a tarefa impossível de plantar uma ideia na mente de alguém.",
+        poster: "https://image.tmdb.org/t/p/original/xymM5aW6MDcH5AR9I3CamSegJd6.jpg",
+        trailer: "https://www.youtube.com/embed/YoHD9XEInc0"
+      };
 
+      // Preencher dados
+      document.getElementById("titulo").textContent = filme.titulo;
+      document.getElementById("ano").textContent = filme.ano;
+      document.getElementById("genero").textContent = filme.genero;
+      document.getElementById("duracao").textContent = filme.duracao;
+      document.getElementById("realizador").textContent = filme.realizador;
+      document.getElementById("atores").textContent = filme.atores;
+      document.getElementById("descricao").textContent = filme.descricao;
+      document.getElementById("poster").src = filme.poster;
+      document.getElementById("trailer").src = filme.trailer;
+
+      // Estrelas
+      let rating = 0;
+      const stars = document.querySelectorAll(".star");
+
+      stars.forEach(star => {
+        star.addEventListener("click", () => {
+          rating = parseInt(star.getAttribute("data-value"));
+          stars.forEach(s => s.classList.remove("active"));
+          for (let i = 0; i < rating; i++) stars[i].classList.add("active");
+        });
+
+        star.addEventListener("mouseover", () => {
+          stars.forEach((s, i) => {
+            s.style.color = i < star.getAttribute("data-value") ? "#ffdb4d" : "#555";
+          });
+        });
+
+        star.addEventListener("mouseleave", () => {
+          stars.forEach((s, i) => {
+            s.style.color = i < rating ? "#ffcc00" : "#555";
+          });
+        });
+      });
+
+      // Guardar review
+      document.getElementById("guardar-review").addEventListener("click", () => {
+        const comentario = document.getElementById("comentario").value.trim();
+        if (!comentario) return alert("Por favor escreve um comentário antes de guardar!");
+        if (rating === 0) return alert("Por favor seleciona uma classificação com estrelas!");
+
+        const reviewDiv = document.createElement("div");
+        reviewDiv.classList.add("review-item");
+
+        const reviewStars = document.createElement("div");
+        reviewStars.classList.add("review-stars");
+        reviewStars.textContent = "★".repeat(rating) + "☆".repeat(5 - rating);
+
+        const texto = document.createElement("p");
+        texto.textContent = comentario;
+
+        reviewDiv.appendChild(reviewStars);
+        reviewDiv.appendChild(texto);
+        document.getElementById("reviews-container").appendChild(reviewDiv);
+
+        // Reset
+        document.getElementById("comentario").value = "";
+        rating = 0;
+        stars.forEach(s => s.classList.remove("active"));
+        stars.forEach(s => (s.style.color = "#555"));
+      });
+    });
+  </script>
 </body>
 </html>
