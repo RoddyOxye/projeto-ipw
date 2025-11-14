@@ -1,11 +1,20 @@
 /* ====== BASE ====== */
+html, body {
+  height: 100%;
+  margin: 0;
+}
 body {
   font-family: Arial, sans-serif;
   background: #0d0d0d;
   color: #fff;
   margin: 0;
+  display: flex;              /* Ativa o flexbox */
+  flex-direction: column;     /* Conteúdo organizado verticalmente */
+  min-height: 100vh;          /* Pelo menos a altura inteira da janela */
 }
-
+main {
+ flex: 1 0 auto;
+}
 header {
   background: #111;
   padding: 1rem 2rem;
@@ -41,6 +50,7 @@ nav a:hover {
 .banner {
   position: relative;
   height: 60vh;
+  min-height: 400px;
   background-size: cover;
   background-position: center;
   display: flex;
