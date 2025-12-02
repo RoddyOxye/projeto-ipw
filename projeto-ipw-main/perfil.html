@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Perfil | MovieVerse</title>
+  <link rel="stylesheet" href="assets/css/estilo.css">
+  <style>
+    /* Pequenos estilos específicos da página de perfil (complementares ao estilo global) */
+    .perfil-container { max-width: 1000px; margin: 2rem auto; padding: 1rem; }
+    .perfil-grid { display: grid; grid-template-columns: 320px 1fr; gap: 1.5rem; }
+    .card { background: #111; padding: 1rem; border-radius: 10px; }
+    .card h3 { margin-top: 0; color: #f5c518; }
+    .field { margin-bottom: .75rem; }
+    .field label { display:block; color:#ccc; font-size:.9rem; margin-bottom:.25rem; }
+    .field input { width:100%; padding:.6rem; border-radius:6px; border:none; background:#1a1a1a; color:#fff; }
+    .btn { display:inline-block; padding:.5rem .9rem; background:#f5c518; color:#111; border-radius:6px; border:none; cursor:pointer; font-weight:600; }
+    .btn.danger { background:#ff5555; color:#fff; }
+    .reviews-list { display:flex; flex-direction:column; gap:.6rem; }
+    .review-card { background:#161616; padding:.6rem; border-radius:8px; }
+    .small { font-size:.9rem; color:#ccc; }
+    .mylist-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .4rem;
+        background: linear-gradient(90deg, #f5c518 0%, #ffde7b 100%);
+        color: #111;
+        padding: .6rem 1rem;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        margin-top: .5rem;
+    }
+    .mylist-link:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 10px rgba(245,197,24,0.4);
+    }
+    .mylist-link svg {
+      width: 18px;
+      height: 18px;
+      fill: #111;
+    }
+
+    @media (max-width: 768px) {
+      .perfil-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="index.html" style="text-decoration:none">🎬 MovieVerse</a>
+    <nav>
+      <div class="user-menu">
+        <a href="login.html" id="login-link">Login</a>
+        <div id="user-dropdown" class="dropdown hidden">
+          <button id="perfil-btn">Perfil</button>
+          <button id="mylist-btn">Minha Lista</button>
+          <button id="sobre-btn">Sobre Nós</button>
+          <button id="logout-btn">Terminar Sessão</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="perfil-container">
+    <div class="perfil-grid">
+      <!-- Coluna esquerda: info e edição -->
+      <div class="card">
+        <h3>Minha Conta</h3>
+        <p class="small">Informações da tua conta. Podes editar e guardar.</p>
+
+        <div class="field">
+          <label for="usernameInput">Nome de utilizador</label>
+          <input id="usernameInput" type="text" placeholder="Nome de utilizador">
+        </div>
+
+
+        <div class="field">
+          <label for="passwordInput">Palavra-passe</label>
+          <input id="passwordInput" type="password" placeholder="Nova palavra-passe">
+        </div>
+
+        <div style="display:flex;gap:.6rem;margin-top:.5rem;">
+          <button id="saveProfileBtn" class="btn">Guardar</button>
+          <button id="deleteAccountBtn" class="btn danger">Eliminar Conta</button>
+        </div>
+
+        <hr style="border:none;height:1px;background:#222;margin:1rem 0;" />
+
+        <div>
+          <a class="mylist-link" href="minhaLista.html">Minha Lista</a>
+        </div>
+      </div>
+
+      <!-- Coluna direita: reviews e atividade -->
+      <div>
+        <div class="card" style="margin-bottom:1rem;">
+          <h3>Resumo</h3>
+          <p><strong>Nome:</strong> <span id="showUsername">—</span></p>
+          <p><strong>Total reviews:</strong> <span id="showReviewCount">0</span></p>
+        </div>
+
+        <div class="card">
+          <h3>As minhas reviews</h3>
+          <div id="userReviews" class="reviews-list" style="margin-top:.6rem;">
+            <!-- cards de reviews do utilizador -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer style="text-align:center;padding:1rem;background:#111;margin-top:2rem;color:#ccc">
+    <p>&copy; 2025 MovieVerse</p>
+  </footer>
+
+  <!-- scripts -->
+  <script src="assets/js/loginHeader.js"></script>
+ <script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Atualiza header (mostra nome se logado)
+  if (typeof atualizarLogin === "function") atualizarLogin();
+
+  // Elementos
+  const usernameInput = document.getElementById("usernameInput");
+  const passwordInput = document.getElementById("passwordInput");
+  const saveBtn = document.getElementById("saveProfileBtn");
+  const deleteBtn = document.getElementById("deleteAccountBtn");
+
+  const showUsername = document.getElementById("showUsername");
+  const showReviewCount = document.getElementById("showReviewCount");
+  const userReviewsEl = document.getElementById("userReviews");
+
+  // Recupera utilizador atual
+  const currentUserName = localStorage.getItem("currentUser");
+  if (!currentUserName) {
+    alert("Tens de iniciar sessão para ver o perfil.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  // Função: carregar utilizadores (users.json + localUsers)
+  async function carregarTodosUtilizadores() {
+    let baseUsers = [];
+    try {
+      const res = await fetch("js/users.json");
+      if (res.ok) baseUsers = await res.json();
+    } catch (e) {
+      console.log("users.json não encontrado ou erro ao carregar (ignorar).");
+    }
+
+    const localUsers = JSON.parse(localStorage.getItem("localUsers")) || [];
+
+    // sobrepor com localUsers (novos registos)
+    const mapa = new Map();
+    baseUsers.forEach(u => mapa.set(u.username, u));
+    localUsers.forEach(u => mapa.set(u.username, u));
+    return Array.from(mapa.values());
+  }
+
+  // Função: obter utilizador actual (obj)
+  async function obterUtilizadorAtual() {
+    const todos = await carregarTodosUtilizadores();
+    return todos.find(u => u.username === currentUserName) || null;
+  }
+
+  // Preenche o perfil com dados
+  async function preencherPerfil() {
+    const user = await obterUtilizadorAtual();
+    if (!user) {
+      usernameInput.value = currentUserName;
+      showUsername.textContent = currentUserName;
+      renderUserReviewsFromStorage(currentUserName);
+      return;
+    }
+
+    usernameInput.value = user.username || "";
+    showUsername.textContent = user.username || "—";
+    renderUserReviewsFromStorage(user.username);
+  }
+
+  // Render reviews do utilizador (lê localStorage.reviews)
+  function renderUserReviewsFromStorage(username) {
+    const allReviews = JSON.parse(localStorage.getItem("reviews")) || {};
+    const reviews = [];
+    Object.keys(allReviews).forEach(key => {
+      allReviews[key].forEach(r => {
+        if (r.user === username) {
+          reviews.push({ key, ...r });
+        }
+      });
+    });
+    renderUserReviews(username, reviews);
+  }
+
+  // Mostra as reviews no DOM
+  function renderUserReviews(username, reviews) {
+    userReviewsEl.innerHTML = "";
+    showReviewCount.textContent = reviews.length;
+    if (!reviews || reviews.length === 0) {
+      userReviewsEl.innerHTML = "<p class='small'>Ainda não tens reviews.</p>";
+      return;
+    }
+
+    reviews.forEach(r => {
+      const div = document.createElement("div");
+      div.className = "review-card";
+      div.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <strong>${r.key}</strong>
+          <div><span class="small">${r.rating}★</span></div>
+        </div>
+        <p style="margin:.4rem 0;">${r.comment}</p>
+      `;
+
+      const btn = document.createElement("button");
+      btn.className = "btn";
+      btn.textContent = "Ver Detalhes";
+      btn.addEventListener("click", () => {
+        if (r.key && r.key.startsWith && r.key.startsWith("tt")) {
+          window.location.href = `detalhes.html?id=${encodeURIComponent(r.key)}`;
+        } else {
+          window.location.href = `detalhes.html?titulo=${encodeURIComponent(r.key)}`;
+        }
+      });
+      div.appendChild(btn);
+      userReviewsEl.appendChild(div);
+    });
+  }
+
+  // Guardar edição de perfil
+  saveBtn.addEventListener("click", async () => {
+    const novoNome = usernameInput.value.trim();
+    const novaPass = passwordInput.value.trim();
+
+    if (!novoNome) return alert("O nome de utilizador não pode estar vazio.");
+
+    let localUsers = JSON.parse(localStorage.getItem("localUsers")) || [];
+    let updated = false;
+
+    for (let u of localUsers) {
+      if (u.username === currentUserName) {
+        u.username = novoNome;
+        if (novaPass) u.password = novaPass;
+        updated = true;
+        break;
+      }
+    }
+
+    if (!updated) {
+      try {
+        const base = await fetch("js/users.json").then(r => r.ok ? r.json() : []);
+        const baseUser = (base || []).find(u => u.username === currentUserName);
+        if (baseUser) {
+          baseUser.username = novoNome;
+          if (novaPass) baseUser.password = novaPass;
+          localUsers.push(baseUser);
+        } else {
+          localUsers.push({ username: novoNome, password: novaPass });
+        }
+      } catch (e) {}
+    }
+
+    localStorage.setItem("localUsers", JSON.stringify(localUsers));
+    localStorage.setItem("currentUser", novoNome);
+
+    alert("Perfil atualizado!");
+    window.location.reload();
+  });
+
+  // Eliminar conta
+  deleteBtn.addEventListener("click", async () => {
+    if (!confirm("Tens a certeza que queres eliminar a tua conta local? Esta ação não é reversível.")) return;
+    let localUsers = JSON.parse(localStorage.getItem("localUsers")) || [];
+    localUsers = localUsers.filter(u => u.username !== currentUserName);
+    localStorage.setItem("localUsers", JSON.stringify(localUsers));
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("loggedIn");
+    alert("Conta eliminada. Serás redirecionado para o início.");
+    window.location.href = "index.html";
+  });
+
+  // Inicializar
+  preencherPerfil();
+});
+</script>
+</body>
+</html>
