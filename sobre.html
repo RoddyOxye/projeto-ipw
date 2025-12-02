@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Nós | MovieVerse</title>
+  <link rel="stylesheet" href="assets/css/estilo.css">
+  <style>
+    main {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 1.5rem;
+      text-align: center;
+      color: #ddd;
+    }
+    h1 {
+      color: #f5c518;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      line-height: 1.6;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .team {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .member {
+      background: #111;
+      border-radius: 10px;
+      padding: 1rem;
+      width: 250px;
+    }
+    .member h3 {
+      color: #f5c518;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+    <a class="logo" href="index.html" style="text-decoration:none">🎬 MovieVerse</a>
+    <nav>
+      <div class="user-menu">
+        <a href="login.html" id="login-link">Login</a>
+        <div id="user-dropdown" class="dropdown hidden">
+          <button id="perfil-btn">Perfil</button>
+          <button id="mylist-btn">Minha Lista</button>
+          <button id="sobre-btn">Sobre Nós</button>
+          <button id="logout-btn">Terminar Sessão</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Sobre o MovieVerse</h1>
+    <p>O <strong>MovieVerse</strong> surgiu como resultado de um projeto académico desenvolvido no âmbito da cadeira de IPW (Introdução à Programação Web), com o objetivo de criar uma plataforma interativa onde os utilizadores podem explorar, pesquisar e partilhar informações sobre filmes e séries, integrando funcionalidades como listas personalizadas, avaliações e recomendações, tornando a experiência de entretenimento online mais completa e envolvente.</p>
+
+    <div class="team">
+      <div class="member">
+        <h3>🎥 Equipa MovieVerse</h3>
+        <p>Rodrigo Sebastião</p>
+        <p>Rafael Cordeiro</p>
+      </div>
+    </div>
+  </main>
+
+  <footer style="text-align:center;padding:1rem;background:#111;margin-top:2rem;color:#ccc">
+    <p>&copy; 2025 MovieVerse</p>
+  </footer>
+  <script src="assets/js/loginHeader.js"></script>
+</body>
+</html>
