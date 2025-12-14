@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultados da Pesquisa - MovieVerse</title>
+  <link rel="stylesheet" href="assets/css/estilo.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a class="logo" href="index.html" style="text-decoration: none">🎬 MovieVerse</a>
+    <nav>
+      <div class="user-menu">
+        <a href="login.html" id="login-link">Login</a>
+        <div id="user-dropdown" class="dropdown hidden">
+          <button id="perfil-btn">Perfil</button>
+          <button id="mylist-btn">Minha Lista</button>
+          <button id="sobre-btn">Sobre Nós</button>
+          <button id="logout-btn">Terminar Sessão</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- BARRA DE PESQUISA -->
+  <div class="search-bar">
+    <input type="text" id="search-input" placeholder="Pesquisar filmes ou séries...">
+  </div>
+
+  <main>
+    <section>
+      <h2>Resultados da Pesquisa</h2>
+      <div id="resultados" class="media-row"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 MovieVerse. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="assets/js/loginHeader.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      atualizarLogin();
+
+      const resultados = document.getElementById("resultados");
+      const searchInput = document.getElementById("search-input");
+      const params = new URLSearchParams(window.location.search);
+      const termo = params.get("q")?.toLowerCase() || "";
+
+      async function buscarJSON() {
+        resultados.innerHTML = "";
+
+        const filmesData = await fetch("assets/data/filmes.json").then(res => res.json());
+        const seriesData = await fetch("assets/data/series.json").then(res => res.json());
+
+        const filmes = filmesData.filmes.filter(f => f.title.toLowerCase().includes(termo));
+        const series = seriesData.series.filter(s => s.title.toLowerCase().includes(termo));
+
+        const resultadosTotais = [
+          ...filmes.map(f => ({...f, type: "filme"})),
+          ...series.map(s => ({...s, type: "serie"}))
+        ];
+
+        if (resultadosTotais.length === 0) {
+          resultados.innerHTML = "<p>Nenhum resultado encontrado.</p>";
+          return;
+        }
+
+        resultadosTotais.forEach(item => {
+          const div = document.createElement("div");
+          div.classList.add("media-card");
+          div.innerHTML = `
+            <img src="${item.poster || 'assets/img/noimage.jpg'}" alt="${item.title}">
+            <p>${item.title}</p>
+          `;
+          div.onclick = () => window.location.href = `detalhes.html?id=${item.id}&type=${item.type}`;
+          resultados.appendChild(div);
+        });
+      }
+
+      buscarJSON();
+
+      // Pesquisa Enter
+      searchInput.addEventListener("keypress", e => {
+        if (e.key === "Enter") {
+          const termo = e.target.value.trim();
+          if (termo.length >= 2) {
+            window.location.href = `pesquisar.html?q=${encodeURIComponent(termo)}`;
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

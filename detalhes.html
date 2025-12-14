@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes | MovieVerse</title>
+  <link rel="stylesheet" href="assets/css/estilo.css">
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html" style="text-decoration: none">🎬 MovieVerse</a>
+  <nav>
+    <div class="user-menu">
+      <a href="login.html" id="login-link">Login</a>
+      <div id="user-dropdown" class="dropdown hidden">
+        <button id="perfil-btn">Perfil</button>
+        <button id="mylist-btn">Minha Lista</button>
+        <button id="sobre-btn">Sobre Nós</button>
+        <button id="logout-btn">Terminar Sessão</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="detalhes-container">
+
+  <div class="detalhes">
+    <img id="poster" src="" alt="Poster">
+    <div class="info">
+      <h2 id="titulo"></h2>
+      <p><strong>Ano:</strong> <span id="ano"></span></p>
+      <p><strong>Género:</strong> <span id="genero"></span></p>
+      <p><strong>Duração:</strong> <span id="duracao"></span></p>
+      <p id="descricao"></p>
+      <button id="btn-mylist">Adicionar à Minha Lista</button>
+      <div id="rating-media"></div>
+    </div>
+  </div>
+
+  <div class="trailer-section">
+    <h3>Trailer</h3>
+    <iframe id="trailer" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <div class="review-section">
+    <h3>Faz a tua Review</h3>
+    <div id="rating-stars">★★★★★</div>
+    <textarea id="comentario" placeholder="Escreve o teu comentário..."></textarea>
+    <button id="guardar-review">Guardar Review</button>
+  </div>
+
+  <div class="reviews-list">
+    <h3>Reviews dos Utilizadores</h3>
+    <div id="reviews-container"></div>
+  </div>
+
+</main>
+
+<footer>
+  <p>&copy; 2025 MovieVerse - Projeto TP-SI</p>
+</footer>
+
+<script src="assets/js/loginHeader.js"></script>
+<script src="assets/js/detalhes.js"></script>
+
+</body>
+</html>
