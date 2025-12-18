@@ -12,11 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function carregarDetalhes(id, type) {
   const filePath = type === "filme" ? "assets/data/filmes.json" : "assets/data/series.json";
+  const fallback = type === "filme" ? window.FILMES_FALLBACK : window.SERIES_FALLBACK;
 
-  fetch(filePath)
-    .then(res => res.json())
+  fetchComFallback(filePath, fallback)
     .then(data => {
-      const item = data[type === "filme" ? "filmes" : "series"].find(i => i.id === id);
+      const lista = type === "filme" ? data.filmes : data.series;
+      const item = lista.find(i => i.id === id);
       if (!item) return;
 
       // Preenche informações
@@ -29,7 +30,7 @@ function carregarDetalhes(id, type) {
       document.getElementById("descricao").textContent = item.description;
 
       // Trailer
-      document.getElementById("trailer").src = item.trailer.replace("watch?v=", "embed/");
+      document.getElementById("trailer").src = item.trailer?.replace("watch?v=", "embed/") || "";
 
       // Inicializa botão lista
       const btnLista = document.getElementById("btn-mylist");
@@ -45,7 +46,8 @@ function carregarDetalhes(id, type) {
 
       // Inicializar estrelas para review
       inicializarEstrelas(id, type, item.title);
-    });
+    })
+    .catch(err => console.error("Erro ao carregar detalhes:", err));
 }
 
 function carregarReviews(id, type) {
@@ -67,7 +69,6 @@ function carregarReviews(id, type) {
   atualizarRating(id, type);
 }
 
-// Adiciona título ao salvar review
 function inicializarEstrelas(id, type, title) {
   const starsDiv = document.getElementById("rating-stars");
   const textarea = document.getElementById("comentario");
@@ -75,7 +76,6 @@ function inicializarEstrelas(id, type, title) {
 
   let currentRating = 0;
   const stars = [];
-
   starsDiv.innerHTML = "";
 
   for (let i = 1; i <= 5; i++) {
@@ -101,25 +101,11 @@ function inicializarEstrelas(id, type, title) {
     const comment = textarea.value.trim();
     const user = localStorage.getItem("currentUser");
 
-    if (!user) {
-      alert("Necessitas de estar logado para comentar!");
-      return;
-    }
-
-    if (!currentRating || !comment) {
-      alert("Preenche as estrelas e o comentário!");
-      return;
-    }
+    if (!user) { alert("Necessitas de estar logado para comentar!"); return; }
+    if (!currentRating || !comment) { alert("Preenche as estrelas e o comentário!"); return; }
 
     const allReviews = JSON.parse(localStorage.getItem("reviews")) || [];
-    allReviews.push({
-      id,
-      type,
-      user,
-      title,       // <-- título do filme/série salvo aqui
-      rating: currentRating,
-      comment
-    });
+    allReviews.push({ id, type, user, title, rating: currentRating, comment });
     localStorage.setItem("reviews", JSON.stringify(allReviews));
 
     carregarReviews(id, type);
@@ -130,7 +116,7 @@ function inicializarEstrelas(id, type, title) {
 }
 
 // ============================
-// Funções Minha Lista
+// Minha Lista
 // ============================
 function toggleMinhaLista(id, type) {
   const user = localStorage.getItem("currentUser");
@@ -141,24 +127,17 @@ function toggleMinhaLista(id, type) {
   if (!currentUser) return;
 
   const index = currentUser.mylist.findIndex(f => f.id === id && f.type === type);
-  if (index >= 0) {
-    currentUser.mylist.splice(index, 1);
-  } else {
-    currentUser.mylist.push({ id, type });
-  }
+  if (index >= 0) currentUser.mylist.splice(index, 1);
+  else currentUser.mylist.push({ id, type });
 
   localStorage.setItem("localUsers", JSON.stringify(users));
 }
 
 function atualizarBotaoLista(btn, id, type) {
   const user = localStorage.getItem("currentUser");
-  if (!user) {
-    btn.style.display = "none";
-    return;
-  }
+  if (!user) { btn.style.display = "none"; return; }
 
   btn.style.display = "inline-block";
-
   const users = JSON.parse(localStorage.getItem("localUsers")) || [];
   const currentUser = users.find(u => u.username === user);
 

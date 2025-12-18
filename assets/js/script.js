@@ -1,10 +1,9 @@
 /* ================================
    MOVIEVERSE - SCRIPT PRINCIPAL
-   Usa JSON local (sem API)
+   JSON local com fallback
 ================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Atualiza estado do login no header
   if (typeof atualizarLogin === "function") {
     atualizarLogin();
   }
@@ -17,131 +16,138 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ================================
    CARREGAR FILMES
 ================================ */
-function carregarFilmes() {
-  fetch("assets/data/filmes.json")
-    .then(res => res.json())
-    .then(data => {
-      const filmes = data.filmes;
-      const container = document.getElementById("filmes");
+async function carregarFilmes() {
+  const container = document.getElementById("filmes");
+  if (!container) return;
 
-      if (!container) return;
-      container.innerHTML = "";
+  const data = await fetchComFallback(
+    "assets/data/filmes.json",
+    window.FILMES_FALLBACK
+  );
 
-      filmes.forEach(filme => {
-        const card = document.createElement("div");
-        card.className = "media-card";
+  const filmes = data.filmes;
+  container.innerHTML = "";
 
-        card.innerHTML = `
-          <img src="${filme.poster}" alt="${filme.title}">
-          <p>${filme.title}</p>
-        `;
+  filmes.forEach(filme => {
+    const card = document.createElement("div");
+    card.className = "media-card";
 
-        card.addEventListener("click", () => {
-          window.location.href = `detalhes.html?id=${filme.id}&type=filme`;
-        });
+    card.innerHTML = `
+      <img src="${filme.poster}" alt="${filme.title}">
+      <p>${filme.title}</p>
+    `;
 
-        container.appendChild(card);
-      });
-    })
-    .catch(err => {
-      console.error("Erro ao carregar filmes:", err);
+    card.addEventListener("click", () => {
+      window.location.href = `detalhes.html?id=${filme.id}&type=filme`;
     });
+
+    container.appendChild(card);
+  });
 }
 
 /* ================================
    CARREGAR SÉRIES
-   (assume assets/data/series.json)
 ================================ */
-function carregarSeries() {
-  fetch("assets/data/series.json")
-    .then(res => res.json())
-    .then(data => {
-      const series = data.series;
-      const container = document.getElementById("series");
+async function carregarSeries() {
+  const container = document.getElementById("series");
+  if (!container) return;
 
-      if (!container) return;
-      container.innerHTML = "";
+  const data = await fetchComFallback(
+    "assets/data/series.json",
+    window.SERIES_FALLBACK
+  );
 
-      series.forEach(serie => {
-        const card = document.createElement("div");
-        card.className = "media-card";
+  const series = data.series;
+  container.innerHTML = "";
 
-        card.innerHTML = `
-          <img src="${serie.poster}" alt="${serie.title}">
-          <p>${serie.title}</p>
-        `;
+  series.forEach(serie => {
+    const card = document.createElement("div");
+    card.className = "media-card";
 
-        card.addEventListener("click", () => {
-          window.location.href = `detalhes.html?id=${serie.id}&type=serie`;
-        });
+    card.innerHTML = `
+      <img src="${serie.poster}" alt="${serie.title}">
+      <p>${serie.title}</p>
+    `;
 
-        container.appendChild(card);
-      });
-    })
-    .catch(err => {
-      console.error("Erro ao carregar séries:", err);
+    card.addEventListener("click", () => {
+      window.location.href = `detalhes.html?id=${serie.id}&type=serie`;
     });
+
+    container.appendChild(card);
+  });
 }
 
 /* ================================
    BANNER ALEATÓRIO
 ================================ */
-function atualizarBanner() {
-  Promise.all([
-    fetch("assets/data/filmes.json").then(res => res.json()),
-    fetch("assets/data/series.json").then(res => res.json())
-  ])
-    .then(([filmesData, seriesData]) => {
-      const filmes = filmesData.filmes.map(f => ({ ...f, type: "filme" }));
-      const series = seriesData.series.map(s => ({ ...s, type: "serie" }));
+async function atualizarBanner() {
+  const filmesData = await fetchComFallback(
+    "assets/data/filmes.json",
+    window.FILMES_FALLBACK
+  );
 
-      const todos = [...filmes, ...series];
-      if (todos.length === 0) return;
+  const seriesData = await fetchComFallback(
+    "assets/data/series.json",
+    window.SERIES_FALLBACK
+  );
 
-      const escolhido = todos[Math.floor(Math.random() * todos.length)];
+  const filmes = filmesData.filmes.map(f => ({ ...f, type: "filme" }));
+  const series = seriesData.series.map(s => ({ ...s, type: "serie" }));
 
-      const banner = document.getElementById("banner");
-      const titulo = document.getElementById("banner-title");
-      const desc = document.getElementById("banner-desc");
-      const btn = document.getElementById("banner-btn");
+  const todos = [...filmes, ...series];
+  if (!todos.length) return;
 
-      if (!banner || !titulo || !desc || !btn) return;
+  const escolhido = todos[Math.floor(Math.random() * todos.length)];
 
-      banner.style.backgroundImage = `url('${escolhido.poster}')`;
-      titulo.textContent = escolhido.title;
-      desc.textContent = escolhido.description || "Sem descrição disponível.";
+  const banner = document.getElementById("banner");
+  const titulo = document.getElementById("banner-title");
+  const desc = document.getElementById("banner-desc");
+  const btn = document.getElementById("banner-btn");
 
-      btn.onclick = () => {
-        window.location.href = `detalhes.html?id=${escolhido.id}&type=${escolhido.type}`;
-      };
-    })
-    .catch(err => {
-      console.error("Erro ao atualizar banner:", err);
-    });
+  if (!banner || !titulo || !desc || !btn) return;
+
+  banner.style.backgroundImage = `url('${escolhido.poster}')`;
+  titulo.textContent = escolhido.title;
+  desc.textContent = escolhido.description || "Sem descrição disponível.";
+
+  btn.onclick = () => {
+    window.location.href = `detalhes.html?id=${escolhido.id}&type=${escolhido.type}`;
+  };
 }
-// ================================
-// BARRA DE PESQUISA
-// ================================
+
+/* ================================
+   BARRA DE PESQUISA
+================================ */
 const searchInput = document.getElementById("search-input");
+
 if (searchInput) {
   searchInput.addEventListener("keypress", async e => {
-    if (e.key === "Enter") {
-      const termo = e.target.value.trim().toLowerCase();
-      if (termo.length < 2) return;
+    if (e.key !== "Enter") return;
 
-      // Fetch dos JSONs
-      const [filmesRes, seriesRes] = await Promise.all([
-        fetch("assets/data/filmes.json").then(r => r.json()),
-        fetch("assets/data/series.json").then(r => r.json())
-      ]);
+    const termo = e.target.value.trim().toLowerCase();
+    if (termo.length < 2) return;
 
-      const filmes = filmesRes.filmes.filter(f => f.title.toLowerCase().includes(termo));
-      const series = seriesRes.series.filter(s => s.title.toLowerCase().includes(termo));
+    const filmesData = await fetchComFallback(
+      "assets/data/filmes.json",
+      window.FILMES_FALLBACK
+    );
 
-      // Guardar resultados no sessionStorage e redirecionar
-      sessionStorage.setItem("pesquisaFilmes", JSON.stringify(filmes));
-      sessionStorage.setItem("pesquisaSeries", JSON.stringify(series));
-      window.location.href = "pesquisar.html?q=" + encodeURIComponent(termo);
-    }
+    const seriesData = await fetchComFallback(
+      "assets/data/series.json",
+      window.SERIES_FALLBACK
+    );
+
+    const filmes = filmesData.filmes.filter(f =>
+      f.title.toLowerCase().includes(termo)
+    );
+
+    const series = seriesData.series.filter(s =>
+      s.title.toLowerCase().includes(termo)
+    );
+
+    sessionStorage.setItem("pesquisaFilmes", JSON.stringify(filmes));
+    sessionStorage.setItem("pesquisaSeries", JSON.stringify(series));
+
+    window.location.href = "pesquisar.html?q=" + encodeURIComponent(termo);
   });
 }
