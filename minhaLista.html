@@ -4,22 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Minha Lista | MovieVerse</title>
-  <link rel="stylesheet" href="assets/css/estilo.css">
-  <style>
-    .container { max-width: 1000px; margin: 2rem auto; padding: 1rem; }
-    h2 { color: #f5c518; margin-bottom: 1rem; }
-    .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
-    .media-card { background: #111; border-radius: 10px; overflow: hidden; cursor: pointer; transition: transform .2s; }
-    .media-card:hover { transform: scale(1.05); }
-    .media-card img { width: 100%; display: block; }
-    .media-card p { color: #fff; text-align: center; padding: .5rem; font-size: .9rem; }
-    .small { color:#ccc; font-size:.9rem; margin-top:.5rem; text-align:center; }
-  </style>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/minhaLista.css">
 </head>
 <body>
   <!-- HEADER -->
   <header>
-    <a class="logo" href="index.html" style="text-decoration:none">🎬 MovieVerse</a>
+    <a class="logo" href="index.html">🎬 MovieVerse</a>
     <nav>
       <div class="user-menu">
         <a href="login.html" id="login-link">Login</a>
@@ -39,7 +30,7 @@
     <p id="emptyMsg" class="small"></p>
   </main>
 
-  <footer style="text-align:center;padding:1rem;background:#111;margin-top:2rem;color:#ccc">
+  <footer>
     <p>&copy; 2025 MovieVerse</p>
   </footer>
 

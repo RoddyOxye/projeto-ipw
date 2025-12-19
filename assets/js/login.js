@@ -2,6 +2,7 @@
 // login.js — Login e Registo
 // ==========================
 
+// Controla login/registo usando localStorage.
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("login-form");
   const registerLink = document.getElementById("register-link");
@@ -76,6 +77,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// Atualiza header com menu do utilizador e ações rápidas.
 function atualizarLogin() {
   const loginLink = document.getElementById("login-link");
   const dropdown = document.getElementById("user-dropdown");

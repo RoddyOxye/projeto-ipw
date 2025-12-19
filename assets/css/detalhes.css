@@ -1,0 +1,144 @@
+#detalhes-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.detalhes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  background: #1c1c1c;
+  padding: 1rem;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.detalhes img {
+  width: 300px;
+  border-radius: 10px;
+}
+
+.info {
+  max-width: 600px;
+}
+
+.info p {
+  margin: 0.3rem 0;
+}
+
+#rating-media {
+  font-size: 1.5rem;
+  margin: 10px 0;
+  color: #ffd700;
+}
+
+/* Botao Minha Lista */
+#btn-mylist {
+  background-color: #ffcc00;
+  color: #111;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  margin-top: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#btn-mylist:hover {
+  background-color: #e6b800;
+  transform: scale(1.05);
+}
+
+.trailer-section {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.trailer-section iframe {
+  width: 100%;
+  max-width: 800px;
+  height: 450px;
+  border: none;
+  border-radius: 10px;
+}
+
+.review-section {
+  margin-top: 2rem;
+  background: #111;
+  padding: 1rem;
+  border-radius: 10px;
+  color: #fff;
+}
+
+#rating-stars {
+  display: flex;
+  gap: 4px;
+}
+
+.star {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #555;
+}
+
+.star.active {
+  color: #f5c518;
+}
+
+.review-section textarea {
+  width: 100%;
+  height: 80px;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  resize: none;
+}
+
+.review-section button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background: #f5c518;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.review-section button:hover {
+  background: #ffcc33;
+}
+
+.reviews-list {
+  margin-top: 2rem;
+}
+
+.review-item {
+  background: #222;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+
+.review-username {
+  color: #f5c518;
+  font-weight: bold;
+  margin-right: 6px;
+}
+
+@media (max-width: 768px) {
+  .detalhes {
+    justify-content: center;
+  }
+
+  .detalhes img {
+    width: 220px;
+  }
+
+  .trailer-section iframe {
+    height: 300px;
+  }
+}

@@ -1,0 +1,126 @@
+/* ====== BASE ====== */
+body {
+  font-family: Arial, sans-serif;
+  background: #0d0d0d;
+  color: #fff;
+  margin: 0;
+}
+
+header {
+  background: #111;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  margin: 0;
+  font-size: 35px;
+  color: #f5c518;
+  text-decoration: none;
+  display: inline-block;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #f5c518;
+}
+
+#login-link {
+  font-weight: bold;
+  color: #f5c518;
+  cursor: pointer;
+}
+
+#login-link:hover {
+  text-decoration: underline;
+}
+
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 35px;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  z-index: 100;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.dropdown.hidden {
+  display: none;
+}
+
+.dropdown button {
+  background: none;
+  border: none;
+  color: #fff;
+  text-align: left;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.dropdown button:hover {
+  background-color: #333;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+}
+
+/* ====== RESPONSIVIDADE ====== */
+
+/* Tablets */
+@media (max-width: 992px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Telemoveis grandes */
+@media (max-width: 768px) {
+  .logo {
+    font-size: 28px;
+  }
+
+  nav a {
+    font-size: 0.95rem;
+  }
+}
+
+/* Telemoveis pequenos */
+@media (max-width: 480px) {
+  header {
+    padding: 1rem;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}

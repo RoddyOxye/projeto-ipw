@@ -1,4 +1,5 @@
 // loginHeader.js
+// Header reutilizável: mostra utilizador logado e ações do menu.
 function atualizarLogin() {
   const loginLink = document.getElementById("login-link");
   const dropdown = document.getElementById("user-dropdown");

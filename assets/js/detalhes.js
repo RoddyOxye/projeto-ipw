@@ -1,3 +1,4 @@
+// Carrega dados do item via querystring e monta a página de detalhes.
 document.addEventListener("DOMContentLoaded", () => {
   atualizarLogin(); // Header login
 
@@ -10,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   carregarDetalhes(id, type);
 });
 
+// Busca o item pelo id/tipo e injeta dados no DOM.
 function carregarDetalhes(id, type) {
   const filePath = type === "filme" ? "assets/data/filmes.json" : "assets/data/series.json";
   const fallback = type === "filme" ? window.FILMES_FALLBACK : window.SERIES_FALLBACK;
@@ -20,7 +22,7 @@ function carregarDetalhes(id, type) {
       const item = lista.find(i => i.id === id);
       if (!item) return;
 
-      // Preenche informações
+      // Preenche informações principais do item.
       document.getElementById("poster").src = item.poster;
       document.getElementById("poster").alt = item.title;
       document.getElementById("titulo").textContent = item.title;
@@ -29,10 +31,10 @@ function carregarDetalhes(id, type) {
       document.getElementById("duracao").textContent = `${item.duration} min`;
       document.getElementById("descricao").textContent = item.description;
 
-      // Trailer
+      // Converte link de YouTube para embed, se existir.
       document.getElementById("trailer").src = item.trailer?.replace("watch?v=", "embed/") || "";
 
-      // Inicializa botão lista
+      // Inicializa botão da Minha Lista e sincroniza estado.
       const btnLista = document.getElementById("btn-mylist");
       atualizarBotaoLista(btnLista, id, type);
 
@@ -41,15 +43,16 @@ function carregarDetalhes(id, type) {
         atualizarBotaoLista(btnLista, id, type);
       });
 
-      // Carregar reviews
+      // Carrega reviews já gravadas.
       carregarReviews(id, type);
 
-      // Inicializar estrelas para review
+      // Inicializa componente de estrelas e guarda nova review.
       inicializarEstrelas(id, type, item.title);
     })
     .catch(err => console.error("Erro ao carregar detalhes:", err));
 }
 
+// Renderiza reviews do item guardadas no localStorage.
 function carregarReviews(id, type) {
   const reviewsContainer = document.getElementById("reviews-container");
   reviewsContainer.innerHTML = "";
@@ -69,6 +72,7 @@ function carregarReviews(id, type) {
   atualizarRating(id, type);
 }
 
+// Monta UI de estrelas e trata o envio da review.
 function inicializarEstrelas(id, type, title) {
   const starsDiv = document.getElementById("rating-stars");
   const textarea = document.getElementById("comentario");
@@ -97,6 +101,7 @@ function inicializarEstrelas(id, type, title) {
     stars.forEach(s => s.style.color = s.dataset.value <= rating ? "gold" : "grey");
   }
 
+  // Valida login e campos antes de guardar review.
   btnGuardar.addEventListener("click", () => {
     const comment = textarea.value.trim();
     const user = localStorage.getItem("currentUser");
@@ -118,6 +123,7 @@ function inicializarEstrelas(id, type, title) {
 // ============================
 // Minha Lista
 // ============================
+// Adiciona/remove item na lista do utilizador atual.
 function toggleMinhaLista(id, type) {
   const user = localStorage.getItem("currentUser");
   if (!user) return;
@@ -133,6 +139,7 @@ function toggleMinhaLista(id, type) {
   localStorage.setItem("localUsers", JSON.stringify(users));
 }
 
+// Ajusta texto e cor do botão conforme o estado da lista.
 function atualizarBotaoLista(btn, id, type) {
   const user = localStorage.getItem("currentUser");
   if (!user) { btn.style.display = "none"; return; }
@@ -153,6 +160,7 @@ function atualizarBotaoLista(btn, id, type) {
 // ============================
 // Rating médio
 // ============================
+// Calcula média das reviews e atualiza o widget de rating.
 function atualizarRating(id, type) {
   const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
   const itemReviews = reviews.filter(r => r.id === id && r.type === type);

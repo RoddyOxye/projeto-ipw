@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resultados da Pesquisa - MovieVerse</title>
-  <link rel="stylesheet" href="assets/css/estilo.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/pesquisar.css">
 </head>
 <body>
 
   <!-- HEADER -->
   <header>
-    <a class="logo" href="index.html" style="text-decoration: none">🎬 MovieVerse</a>
+    <a class="logo" href="index.html">🎬 MovieVerse</a>
     <nav>
       <div class="user-menu">
         <a href="login.html" id="login-link">Login</a>
@@ -59,15 +60,43 @@
       async function buscarJSON() {
         resultados.innerHTML = "";
 
-        const filmesData = await fetch("assets/data/filmes.json").then(res => res.json());
-        const seriesData = await fetch("assets/data/series.json").then(res => res.json());
+        const termoCache = sessionStorage.getItem("pesquisaTermo");
+        const filmesCache = sessionStorage.getItem("pesquisaFilmes");
+        const seriesCache = sessionStorage.getItem("pesquisaSeries");
+        const filmesGuardados = filmesCache ? JSON.parse(filmesCache) : null;
+        const seriesGuardadas = seriesCache ? JSON.parse(seriesCache) : null;
 
-        const filmes = filmesData.filmes.filter(f => f.title.toLowerCase().includes(termo));
-        const series = seriesData.series.filter(s => s.title.toLowerCase().includes(termo));
+        let filmesFiltrados = [];
+        let seriesFiltradas = [];
+
+        if (
+          termoCache === termo &&
+          Array.isArray(filmesGuardados) &&
+          Array.isArray(seriesGuardadas)
+        ) {
+          filmesFiltrados = filmesGuardados;
+          seriesFiltradas = seriesGuardadas;
+        } else {
+          const filmesData = await fetchComFallback(
+            "assets/data/filmes.json",
+            window.FILMES_FALLBACK || { filmes: [] }
+          );
+          const seriesData = await fetchComFallback(
+            "assets/data/series.json",
+            window.SERIES_FALLBACK || { series: [] }
+          );
+
+          filmesFiltrados = (filmesData.filmes || []).filter(f =>
+            f.title.toLowerCase().includes(termo)
+          );
+          seriesFiltradas = (seriesData.series || []).filter(s =>
+            s.title.toLowerCase().includes(termo)
+          );
+        }
 
         const resultadosTotais = [
-          ...filmes.map(f => ({...f, type: "filme"})),
-          ...series.map(s => ({...s, type: "serie"}))
+          ...filmesFiltrados.map(f => ({...f, type: "filme"})),
+          ...seriesFiltradas.map(s => ({...s, type: "serie"}))
         ];
 
         if (resultadosTotais.length === 0) {
@@ -94,6 +123,9 @@
         if (e.key === "Enter") {
           const termo = e.target.value.trim();
           if (termo.length >= 2) {
+            sessionStorage.removeItem("pesquisaTermo");
+            sessionStorage.removeItem("pesquisaFilmes");
+            sessionStorage.removeItem("pesquisaSeries");
             window.location.href = `pesquisar.html?q=${encodeURIComponent(termo)}`;
           }
         }

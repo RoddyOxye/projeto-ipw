@@ -3,6 +3,7 @@
    JSON local com fallback
 ================================ */
 
+// Ao iniciar a página, sincroniza o estado de login e carrega o conteúdo principal.
 document.addEventListener("DOMContentLoaded", () => {
   if (typeof atualizarLogin === "function") {
     atualizarLogin();
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ================================
    CARREGAR FILMES
 ================================ */
+// Busca o catálogo de filmes (com fallback) e monta os cards no DOM.
 async function carregarFilmes() {
   const container = document.getElementById("filmes");
   if (!container) return;
@@ -28,6 +30,7 @@ async function carregarFilmes() {
   const filmes = data.filmes;
   container.innerHTML = "";
 
+  // Cria um card por filme e liga o clique para a página de detalhes.
   filmes.forEach(filme => {
     const card = document.createElement("div");
     card.className = "media-card";
@@ -48,6 +51,7 @@ async function carregarFilmes() {
 /* ================================
    CARREGAR SÉRIES
 ================================ */
+// Busca o catálogo de séries (com fallback) e monta os cards no DOM.
 async function carregarSeries() {
   const container = document.getElementById("series");
   if (!container) return;
@@ -60,6 +64,7 @@ async function carregarSeries() {
   const series = data.series;
   container.innerHTML = "";
 
+  // Cria um card por série e liga o clique para a página de detalhes.
   series.forEach(serie => {
     const card = document.createElement("div");
     card.className = "media-card";
@@ -80,6 +85,7 @@ async function carregarSeries() {
 /* ================================
    BANNER ALEATÓRIO
 ================================ */
+// Escolhe aleatoriamente um item (filme/série) e atualiza o banner.
 async function atualizarBanner() {
   const filmesData = await fetchComFallback(
     "assets/data/filmes.json",
@@ -121,6 +127,7 @@ async function atualizarBanner() {
 const searchInput = document.getElementById("search-input");
 
 if (searchInput) {
+  // Pesquisa só é disparada com Enter; guarda resultados e redireciona.
   searchInput.addEventListener("keypress", async e => {
     if (e.key !== "Enter") return;
 
@@ -145,6 +152,7 @@ if (searchInput) {
       s.title.toLowerCase().includes(termo)
     );
 
+    sessionStorage.setItem("pesquisaTermo", termo);
     sessionStorage.setItem("pesquisaFilmes", JSON.stringify(filmes));
     sessionStorage.setItem("pesquisaSeries", JSON.stringify(series));
 
