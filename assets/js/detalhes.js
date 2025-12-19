@@ -11,6 +11,17 @@ document.addEventListener("DOMContentLoaded", () => {
   carregarDetalhes(id, type);
 });
 
+function obterEmbedTrailer(url) {
+  if (!url) return "";
+
+  const match = url.match(/(?:v=|\/embed\/|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
+  if (match && match[1]) {
+    return `https://www.youtube.com/embed/${match[1]}?rel=0`;
+  }
+
+  return url;
+}
+
 // Busca o item pelo id/tipo e injeta dados no DOM.
 function carregarDetalhes(id, type) {
   const filePath = type === "filme" ? "assets/data/filmes.json" : "assets/data/series.json";
@@ -32,7 +43,18 @@ function carregarDetalhes(id, type) {
       document.getElementById("descricao").textContent = item.description;
 
       // Converte link de YouTube para embed, se existir.
-      document.getElementById("trailer").src = item.trailer?.replace("watch?v=", "embed/") || "";
+      const trailerUrl = item.trailer || "";
+      const embedUrl = obterEmbedTrailer(trailerUrl);
+      const trailerFrame = document.getElementById("trailer");
+      if (embedUrl) {
+        trailerFrame.src = embedUrl;
+        trailerFrame.title = `Trailer de ${item.title}`;
+        trailerFrame.setAttribute(
+          "allow",
+          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        );
+        trailerFrame.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+      }
 
       // Inicializa botão da Minha Lista e sincroniza estado.
       const btnLista = document.getElementById("btn-mylist");

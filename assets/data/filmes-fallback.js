@@ -8,7 +8,7 @@ window.FILMES_FALLBACK = {
         "duration": 169,
         "genres": ["Drama"],
         "poster": "assets/img/interstellar.png",
-        "trailer": "https://www.youtube.com/watch?v=zSWdZVtXT7E",
+        "trailer": "https://www.youtube-nocookie.com/embed/zSWdZVtXT7E",
         "rating": 0
     },
 
@@ -20,7 +20,7 @@ window.FILMES_FALLBACK = {
         "duration": 139,
         "genres": ["Action"],
         "poster": "assets/img/fightClub.png",
-        "trailer": "https://www.youtube.com/watch?v=BdJKm16Co6M",
+        "trailer": "https://www.youtube-nocookie.com/embed/BdJKm16Co6M",
         "rating": 0 
     },
 
@@ -32,7 +32,7 @@ window.FILMES_FALLBACK = {
         "duration": 148,
         "genres": ["Drama"],
         "poster": "assets/img/inception.png",
-        "trailer": "https://www.youtube.com/watch?v=YoHD9XEInc0",
+        "trailer": "https://www.youtube-nocookie.com/embed/YoHD9XEInc0",
         "rating": 0 
     },
 
@@ -44,7 +44,7 @@ window.FILMES_FALLBACK = {
         "duration": 136,
         "genres": ["Action"],
         "poster": "assets/img/matrix.png",
-        "trailer": "https://www.youtube.com/watch?v=vKQi3bBA1y8",
+        "trailer": "https://www.youtube-nocookie.com/embed/vKQi3bBA1y8",
         "rating": 0 
     },
 
@@ -56,7 +56,7 @@ window.FILMES_FALLBACK = {
         "duration": 91,
         "genres": ["Horror"],
         "poster": "assets/img/halloween.png",
-        "trailer": "https://www.youtube.com/watch?v=3JsrH8eUVOo",
+        "trailer": "https://www.youtube-nocookie.com/embed/3JsrH8eUVOo",
         "rating": 0 
     },
 
@@ -68,7 +68,7 @@ window.FILMES_FALLBACK = {
         "duration": 102,
         "genres": ["Horror"],
         "poster": "assets/img/americanPsycho.png",
-        "trailer": "https://www.youtube.com/watch?v=81mibtQWWBg",
+        "trailer": "https://www.youtube-nocookie.com/embed/81mibtQWWBg",
         "rating": 0 
     },
     
@@ -80,7 +80,7 @@ window.FILMES_FALLBACK = {
         "duration": 84,
         "genres": ["Comedy"],
         "poster": "assets/img/borat.png",
-        "trailer": "https://www.youtube.com/watch?v=ZN-dGVbCjLI",
+        "trailer": "https://www.youtube-nocookie.com/embed/ZN-dGVbCjLI",
         "rating": 0 
     },
 
@@ -92,7 +92,7 @@ window.FILMES_FALLBACK = {
         "duration": 109,
         "genres": ["Comedy"],
         "poster": "assets/img/whiteChicks.png",
-        "trailer": "https://www.youtube.com/watch?v=aeVkbNka9HM",
+        "trailer": "https://www.youtube-nocookie.com/embed/aeVkbNka9HM",
         "rating": 0 
     },
 
@@ -104,7 +104,7 @@ window.FILMES_FALLBACK = {
         "duration": 134,
         "genres": ["Documentary"],
         "poster": "assets/img/bohemianRhampsody.png",
-        "trailer": "https://www.youtube.com/watch?v=mP0VHJYFOAU",
+        "trailer": "https://www.youtube-nocookie.com/embed/mP0VHJYFOAU",
         "rating": 0 
     },
 
@@ -116,7 +116,7 @@ window.FILMES_FALLBACK = {
         "duration": 122,
         "genres": ["Documentary"],
         "poster": "assets/img/backToBlack.png",
-        "trailer": "https://www.youtube.com/watch?v=rYzIOBwyhIU",
+        "trailer": "https://www.youtube-nocookie.com/embed/rYzIOBwyhIU",
         "rating": 0 
     },
 
@@ -128,7 +128,7 @@ window.FILMES_FALLBACK = {
         "duration": 175,
         "genres": ["Crime"],
         "poster": "assets/img/godFather.png",
-        "trailer": "https://www.youtube.com/watch?v=UaVTIH8mujA",
+        "trailer": "https://www.youtube-nocookie.com/embed/UaVTIH8mujA",
         "rating": 0 
     },
     
@@ -140,7 +140,7 @@ window.FILMES_FALLBACK = {
         "duration": 127,
         "genres": ["Crime"],
         "poster": "assets/img/seven.png",
-        "trailer": "https://www.youtube.com/watch?v=KPOuJGkpblk",
+        "trailer": "https://www.youtube-nocookie.com/embed/KPOuJGkpblk",
         "rating": 0 
     },
 
@@ -152,7 +152,7 @@ window.FILMES_FALLBACK = {
         "duration": 142,
         "genres": ["Drama"],
         "poster": "assets/img/shawshankRedemption.png",
-        "trailer": "https://www.youtube.com/watch?v=6hB3S9bIaco",
+        "trailer": "https://www.youtube-nocookie.com/embed/6hB3S9bIaco",
         "rating": 0 
     },
 
@@ -164,7 +164,7 @@ window.FILMES_FALLBACK = {
         "duration": 152,
         "genres": ["Action"],
         "poster": "assets/img/darkKnight.png",
-        "trailer": "https://www.youtube.com/watch?v=EXeTwQWrcwY",
+        "trailer": "https://www.youtube-nocookie.com/embed/EXeTwQWrcwY",
         "rating": 0 
     },
     
@@ -176,7 +176,7 @@ window.FILMES_FALLBACK = {
         "duration": 104,
         "genres": ["Horror"],
         "poster": "assets/img/getOut.png",
-        "trailer": "https://www.youtube.com/watch?v=DzfpyUB60YY",
+        "trailer": "https://www.youtube-nocookie.com/embed/DzfpyUB60YY",
         "rating": 0 
     },
 
@@ -188,7 +188,7 @@ window.FILMES_FALLBACK = {
         "duration": 100,
         "genres": ["Comedy"],
         "poster": "assets/img/hangover.png",
-        "trailer": "https://www.youtube.com/watch?v=tcdUhdOlz9M",
+        "trailer": "https://www.youtube-nocookie.com/embed/tcdUhdOlz9M",
         "rating": 0 
     },
     {
@@ -199,7 +199,7 @@ window.FILMES_FALLBACK = {
         "duration": 113,
         "genres": ["Comedy"],
         "poster": "assets/img/superbad.png",
-        "trailer": "https://www.youtube.com/watch?v=4eaZ_48ZYog",
+        "trailer": "https://www.youtube-nocookie.com/embed/4eaZ_48ZYog",
         "rating": 0 
     },
 
@@ -211,7 +211,7 @@ window.FILMES_FALLBACK = {
         "duration": 100,
         "genres": ["Documentary"],
         "poster": "assets/img/freeSolo.png",
-        "trailer": "https://www.youtube.com/watch?v=urRVZ4SW7WU",
+        "trailer": "https://www.youtube-nocookie.com/embed/urRVZ4SW7WU",
         "rating": 0 
     },
 
@@ -223,7 +223,7 @@ window.FILMES_FALLBACK = {
         "duration": 94,
         "genres": ["Documentary"],
         "poster": "assets/img/socialDilemma.png",
-        "trailer": "https://www.youtube.com/watch?v=uaaC57tcci0",
+        "trailer": "https://www.youtube-nocookie.com/embed/uaaC57tcci0",
         "rating": 0 
     },
 
@@ -235,7 +235,7 @@ window.FILMES_FALLBACK = {
         "duration": 154,
         "genres": ["Crime"],
         "poster": "assets/img/pulpFiction.png",
-        "trailer": "https://www.youtube.com/watch?v=s7EdQ4FqbhY",
+        "trailer": "https://www.youtube-nocookie.com/embed/s7EdQ4FqbhY",
         "rating": 0 
     }
   ]

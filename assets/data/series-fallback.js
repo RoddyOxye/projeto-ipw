@@ -8,7 +8,7 @@ window.SERIES_FALLBACK = {
       "duration": 47,
       "genres": ["Drama"],
       "poster": "assets/img/breakingBad.png",
-      "trailer": "https://www.youtube.com/watch?v=HhesaQXLuRY",
+      "trailer": "https://www.youtube-nocookie.com/embed/HhesaQXLuRY",
       "rating": 0,
       "seasons": 5,
       "episodes": 62
@@ -21,7 +21,7 @@ window.SERIES_FALLBACK = {
       "duration": 51,
       "genres": ["Drama"],
       "poster": "assets/img/strangerThings.png",
-      "trailer": "https://www.youtube.com/watch?v=b9EkMc79ZSU",
+      "trailer": "https://www.youtube-nocookie.com/embed/b9EkMc79ZSU",
       "rating": 0,
       "seasons": 4,
       "episodes": 34
@@ -34,7 +34,7 @@ window.SERIES_FALLBACK = {
       "duration": 53,
       "genres": ["Drama"],
       "poster": "assets/img/dark.png",
-      "trailer": "https://www.youtube.com/watch?v=rrwycJ08PSA",
+      "trailer": "https://www.youtube-nocookie.com/embed/rrwycJ08PSA",
       "rating": 0,
       "seasons": 3,
       "episodes": 26
@@ -47,7 +47,7 @@ window.SERIES_FALLBACK = {
       "duration": 60,
       "genres": ["Action"],
       "poster": "assets/img/theBoys.png",
-      "trailer": "https://www.youtube.com/watch?v=5SKP1_F7ReE",
+      "trailer": "https://www.youtube-nocookie.com/embed/5SKP1_F7ReE",
       "rating": 0,
       "seasons": 4,
       "episodes": 32
@@ -60,7 +60,7 @@ window.SERIES_FALLBACK = {
       "duration": 40,
       "genres": ["Action"],
       "poster": "assets/img/theMandalorian.png",
-      "trailer": "https://www.youtube.com/watch?v=aOC8E8z_ifw",
+      "trailer": "https://www.youtube-nocookie.com/embed/aOC8E8z_ifw",
       "rating": 0,
       "seasons": 3,
       "episodes": 24
@@ -73,7 +73,7 @@ window.SERIES_FALLBACK = {
       "duration": 58,
       "genres": ["Drama"],
       "poster": "assets/img/peakyBlinders.png",
-      "trailer": "https://www.youtube.com/watch?v=oVzVdvGIC7U",
+      "trailer": "https://www.youtube-nocookie.com/embed/oVzVdvGIC7U",
       "rating": 0,
       "seasons": 6,
       "episodes": 36
@@ -86,7 +86,7 @@ window.SERIES_FALLBACK = {
       "duration": 57,
       "genres": ["Drama"],
       "poster": "assets/img/gameOfThrones.png",
-      "trailer": "https://www.youtube.com/watch?v=gcTkNV5Vg1E",
+      "trailer": "https://www.youtube-nocookie.com/embed/gcTkNV5Vg1E",
       "rating": 0,
       "seasons": 8,
       "episodes": 73
@@ -99,7 +99,7 @@ window.SERIES_FALLBACK = {
       "duration": 22,
       "genres": ["Comedy"],
       "poster": "assets/img/theOffice.png",
-      "trailer": "https://www.youtube.com/watch?v=-C2z-nshFts",
+      "trailer": "https://www.youtube-nocookie.com/embed/-C2z-nshFts",
       "rating": 0,
       "seasons": 9,
       "episodes": 201
@@ -112,7 +112,7 @@ window.SERIES_FALLBACK = {
       "duration": 21,
       "genres": ["Comedy"],
       "poster": "assets/img/brooklyn99.png",
-      "trailer": "https://www.youtube.com/watch?v=icTOP9F17pU",
+      "trailer": "https://www.youtube-nocookie.com/embed/icTOP9F17pU",
       "rating": 0,
       "seasons": 8,
       "episodes": 153
@@ -125,7 +125,7 @@ window.SERIES_FALLBACK = {
       "duration": 22,
       "genres": ["Comedy"],
       "poster": "assets/img/friends.png",
-      "trailer": "https://www.youtube.com/watch?v=RasWhgd4vao",
+      "trailer": "https://www.youtube-nocookie.com/embed/RasWhgd4vao",
       "rating": 0,
       "seasons": 10,
       "episodes": 236
@@ -138,7 +138,7 @@ window.SERIES_FALLBACK = {
       "duration": 59,
       "genres": ["Documentary"],
       "poster": "assets/img/chernobyl.png",
-      "trailer": "https://www.youtube.com/watch?v=s9APLXM9Ei8",
+      "trailer": "https://www.youtube-nocookie.com/embed/s9APLXM9Ei8",
       "rating": 0,
       "seasons": 1,
       "episodes": 5
@@ -151,7 +151,7 @@ window.SERIES_FALLBACK = {
       "duration": 48,
       "genres": ["Documentary"],
       "poster": "assets/img/ourPlanet.png",
-      "trailer": "https://www.youtube.com/watch?v=aETNYyrqNYE",
+      "trailer": "https://www.youtube-nocookie.com/embed/aETNYyrqNYE",
       "rating": 0,
       "seasons": 1,
       "episodes": 8
@@ -164,7 +164,7 @@ window.SERIES_FALLBACK = {
       "duration": 52,
       "genres": ["Action"],
       "poster": "assets/img/loki.png",
-      "trailer": "https://www.youtube.com/watch?v=nW948Va-l10",
+      "trailer": "https://www.youtube-nocookie.com/embed/nW948Va-l10",
       "rating": 0,
       "seasons": 2,
       "episodes": 12
@@ -177,7 +177,7 @@ window.SERIES_FALLBACK = {
       "duration": 60,
       "genres": ["Action"],
       "poster": "assets/img/theWitcher.png",
-      "trailer": "https://www.youtube.com/watch?v=ndl1W4ltcmg",
+      "trailer": "https://www.youtube-nocookie.com/embed/ndl1W4ltcmg",
       "rating": 0,
       "seasons": 3,
       "episodes": 24
@@ -190,7 +190,7 @@ window.SERIES_FALLBACK = {
       "duration": 55,
       "genres": ["Drama"],
       "poster": "assets/img/mindhunter.png",
-      "trailer": "https://www.youtube.com/watch?v=PHlJQCyqiaI",
+      "trailer": "https://www.youtube-nocookie.com/embed/PHlJQCyqiaI",
       "rating": 0,
       "seasons": 2,
       "episodes": 19
@@ -203,7 +203,7 @@ window.SERIES_FALLBACK = {
       "duration": 60,
       "genres": ["Drama"],
       "poster": "assets/img/blackMirror.png",
-      "trailer": "https://www.youtube.com/watch?v=jROLrhQkK78",
+      "trailer": "https://www.youtube-nocookie.com/embed/jROLrhQkK78",
       "rating": 0,
       "seasons": 6,
       "episodes": 28
@@ -216,7 +216,7 @@ window.SERIES_FALLBACK = {
       "duration": 44,
       "genres": ["Horror"],
       "poster": "assets/img/theWalkingDead.png",
-      "trailer": "https://www.youtube.com/watch?v=sfAc2U20uyg",
+      "trailer": "https://www.youtube-nocookie.com/embed/sfAc2U20uyg",
       "rating": 0,
       "seasons": 11,
       "episodes": 177
@@ -229,7 +229,7 @@ window.SERIES_FALLBACK = {
       "duration": 50,
       "genres": ["Horror"],
       "poster": "assets/img/hillHouse.png",
-      "trailer": "https://www.youtube.com/watch?v=3eqxXqJDmcY",
+      "trailer": "https://www.youtube-nocookie.com/embed/3eqxXqJDmcY",
       "rating": 0,
       "seasons": 1,
       "episodes": 10
@@ -242,7 +242,7 @@ window.SERIES_FALLBACK = {
       "duration": 22,
       "genres": ["Comedy"],
       "poster": "assets/img/bigBangTheory.png",
-      "trailer": "https://www.youtube.com/watch?v=WBb3fojgW0Q",
+      "trailer": "https://www.youtube-nocookie.com/embed/WBb3fojgW0Q",
       "rating": 0,
       "seasons": 12,
       "episodes": 279
@@ -255,7 +255,7 @@ window.SERIES_FALLBACK = {
       "duration": 49,
       "genres": ["Documentary"],
       "poster": "assets/img/planetEarth2.png",
-      "trailer": "https://www.youtube.com/watch?v=c8aFcHFu8QM",
+      "trailer": "https://www.youtube-nocookie.com/embed/c8aFcHFu8QM",
       "rating": 0,
       "seasons": 1,
       "episodes": 6
