@@ -237,6 +237,18 @@ window.FILMES_FALLBACK = {
         "poster": "assets/img/pulpFiction.png",
         "trailer": "https://www.youtube-nocookie.com/embed/s7EdQ4FqbhY",
         "rating": 0 
+    },
+
+    {
+        "id": 21,
+        "title": "AVl",
+        "year": 1999,
+        "description": "Quando uma bela desconhecida leva o hacker Neo a um submundo sombrio, ele descobre a chocante verdade: a vida que conhecia era uma elaborada farsa criada por uma inteligência cibernética maligna.",
+        "duration": 136,
+        "genres": ["Action"],
+        "poster": "assets/img/matrix.png",
+        "trailer": "https://www.youtube-nocookie.com/embed/vKQi3bBA1y8",
+        "rating": 0 
     }
   ]
 }
